@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+python-multipart
+python-dotenv
+pymongo
+PyPDF2
+pdfplumber
+python-docx
+google-generativeai
+langchain
+langchain-community
+faiss-cpu
+pydantic

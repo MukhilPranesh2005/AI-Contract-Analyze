@@ -1,0 +1,439 @@
+@import "tailwindcss";
+
+/* ─── LexiTwin Brand CSS Variables ─── */
+:root {
+    --lt-navy: #0b1437;
+    --lt-navy-mid: #111d4a;
+    --lt-navy-light: #1a2d6d;
+    --lt-gold: #c9a84c;
+    --lt-gold-bright: #f0c150;
+    --lt-gold-muted: #8a6c2a;
+    --lt-surface: #f5f6fa;
+    --lt-surface-2: #eef0f8;
+    --lt-border: #dde1ef;
+    --lt-text-primary: #0b1437;
+    --lt-text-secondary: #4b5683;
+    --lt-text-muted: #8590b8;
+    --lt-white: #ffffff;
+    --lt-success: #0d9069;
+    --lt-warning: #d97706;
+    --lt-danger: #c13030;
+    --lt-info: #1e6bb8;
+    --shadow-card: 0 2px 16px 0 rgba(11,20,55,0.07), 0 1px 4px 0 rgba(11,20,55,0.04);
+    --shadow-card-hover: 0 8px 40px 0 rgba(11,20,55,0.13), 0 2px 8px 0 rgba(11,20,55,0.06);
+    --shadow-glow-gold: 0 0 20px 0 rgba(201,168,76,0.25);
+    --radius-card: 16px;
+    --radius-btn: 10px;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--lt-surface);
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    color: var(--lt-text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── LexiTwin Custom Animations ─── */
+@keyframes lt-fade-up {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes lt-fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes lt-glow-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0); }
+    50%       { box-shadow: 0 0 24px 6px rgba(201,168,76,0.18); }
+}
+
+@keyframes lt-shimmer {
+    0%   { background-position: -400px 0; }
+    100% { background-position: 400px 0; }
+}
+
+@keyframes lt-spin-slow {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+@keyframes lt-bounce-dot {
+    0%, 80%, 100% { transform: scale(0); opacity: 0.3; }
+    40% { transform: scale(1); opacity: 1; }
+}
+
+/* ─── Utility Classes ─── */
+.lt-animate-fade-up {
+    animation: lt-fade-up 0.45s cubic-bezier(0.22,1,0.36,1) both;
+}
+
+.lt-animate-fade-in {
+    animation: lt-fade-in 0.35s ease both;
+}
+
+.lt-animate-glow {
+    animation: lt-glow-pulse 3s ease-in-out infinite;
+}
+
+/* ─── LexiTwin Card Base ─── */
+.lt-card {
+    background: var(--lt-white);
+    border: 1px solid var(--lt-border);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+}
+
+.lt-card:hover {
+    box-shadow: var(--shadow-card-hover);
+    border-color: #c4cbe8;
+}
+
+.lt-card-interactive:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card-hover);
+    border-color: rgba(201,168,76,0.4);
+}
+
+/* ─── LexiTwin Buttons ─── */
+.lt-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--lt-navy);
+    color: var(--lt-white);
+    border: 1px solid var(--lt-navy);
+    border-radius: var(--radius-btn);
+    padding: 10px 22px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.lt-btn-primary:hover {
+    background: var(--lt-navy-light);
+    box-shadow: 0 4px 16px rgba(11,20,55,0.25);
+    transform: translateY(-1px);
+}
+
+.lt-btn-gold {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #c9a84c 0%, #f0c150 100%);
+    color: var(--lt-navy);
+    border: none;
+    border-radius: var(--radius-btn);
+    padding: 10px 22px;
+    font-size: 0.875rem;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: filter 0.2s, transform 0.15s, box-shadow 0.2s;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.lt-btn-gold:hover {
+    filter: brightness(1.08);
+    box-shadow: var(--shadow-glow-gold);
+    transform: translateY(-1px);
+}
+
+.lt-btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--lt-navy);
+    border: 1.5px solid var(--lt-border);
+    border-radius: var(--radius-btn);
+    padding: 9px 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s, transform 0.15s;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.lt-btn-outline:hover {
+    border-color: var(--lt-gold);
+    background: rgba(201,168,76,0.05);
+    transform: translateY(-1px);
+}
+
+/* ─── Badge Styles ─── */
+.lt-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border: 1px solid transparent;
+}
+
+.lt-badge-gold {
+    background: rgba(201,168,76,0.15);
+    color: var(--lt-gold-muted);
+    border-color: rgba(201,168,76,0.35);
+}
+
+.lt-badge-navy {
+    background: rgba(11,20,55,0.08);
+    color: var(--lt-navy-mid);
+    border-color: rgba(11,20,55,0.15);
+}
+
+.lt-badge-success {
+    background: rgba(13,144,105,0.1);
+    color: var(--lt-success);
+    border-color: rgba(13,144,105,0.25);
+}
+
+.lt-badge-danger {
+    background: rgba(193,48,48,0.1);
+    color: var(--lt-danger);
+    border-color: rgba(193,48,48,0.25);
+}
+
+/* ─── Section Heading ─── */
+.lt-section-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--lt-text-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.lt-section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--lt-border) 0%, transparent 100%);
+    margin-left: 8px;
+}
+
+/* ─── Loading / Skeleton Shimmer ─── */
+.lt-skeleton {
+    background: linear-gradient(90deg, #eef0f8 25%, #dde1ef 50%, #eef0f8 75%);
+    background-size: 400px 100%;
+    animation: lt-shimmer 1.5s infinite linear;
+    border-radius: 8px;
+}
+
+/* ─── Typing Dots ─── */
+.lt-typing-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--lt-gold);
+    animation: lt-bounce-dot 1.4s ease-in-out infinite both;
+}
+
+.lt-typing-dot:nth-child(1) { animation-delay: 0s; }
+.lt-typing-dot:nth-child(2) { animation-delay: 0.16s; }
+.lt-typing-dot:nth-child(3) { animation-delay: 0.32s; }
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--lt-surface-2); border-radius: 3px; }
+::-webkit-scrollbar-thumb { background: #c4cbe8; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #a0aace; }
+
+/* ─── Divider ─── */
+.lt-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--lt-border), transparent);
+    margin: 0;
+}
+
+/* ─── Gold line accent ─── */
+.lt-gold-line {
+    height: 3px;
+    width: 48px;
+    background: linear-gradient(90deg, var(--lt-gold), var(--lt-gold-bright));
+    border-radius: 2px;
+}
+
+/* ─── Sidebar / Menu ─── */
+.lt-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.82);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.lt-nav-link:hover {
+    background: rgba(255,255,255,0.10);
+    color: #fff;
+}
+
+.lt-nav-link.active {
+    background: var(--lt-gold);
+    color: var(--lt-navy);
+}
+
+/* ─── Table styles ─── */
+.lt-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+}
+
+.lt-table thead th {
+    padding: 12px 16px;
+    background: var(--lt-surface-2);
+    color: var(--lt-text-secondary);
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--lt-border);
+    white-space: nowrap;
+}
+
+.lt-table tbody td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--lt-border);
+    color: var(--lt-text-primary);
+    vertical-align: top;
+}
+
+.lt-table tbody tr:hover td {
+    background: rgba(11,20,55,0.024);
+}
+
+.lt-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ─── Form inputs ─── */
+.lt-input {
+    width: 100%;
+    padding: 10px 14px;
+    background: var(--lt-white);
+    border: 1.5px solid var(--lt-border);
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-family: 'Inter', sans-serif;
+    color: var(--lt-text-primary);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.lt-input:focus {
+    border-color: var(--lt-gold);
+    box-shadow: 0 0 0 3px rgba(201,168,76,0.15);
+}
+
+.lt-input::placeholder {
+    color: var(--lt-text-muted);
+}
+
+/* ─── Status Pills ─── */
+.lt-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+}
+
+.lt-status-active   { background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; }
+.lt-status-pending  { background: #fef9c3; color: #854d0e; border: 1px solid #fde047; }
+.lt-status-atrisk   { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+.lt-status-done     { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
+.lt-status-review   { background: #f3e8ff; color: #6b21a8; border: 1px solid #d8b4fe; }
+
+/* ─── Upload Drop Zone ─── */
+.lt-upload-zone {
+    border: 2px dashed var(--lt-border);
+    border-radius: var(--radius-card);
+    padding: 40px 24px;
+    text-align: center;
+    background: var(--lt-surface-2);
+    cursor: pointer;
+    transition: border-color 0.25s, background 0.25s;
+}
+
+.lt-upload-zone:hover,
+.lt-upload-zone.dragging {
+    border-color: var(--lt-gold);
+    background: rgba(201,168,76,0.04);
+}
+
+/* ─── Risk Indicator ─── */
+.lt-risk-critical { background: #1a0a0a; color: #ff6b6b; border: 1px solid #c13030; }
+.lt-risk-high     { background: #fff7ed; color: #c2410c; border: 1px solid #fdba74; }
+.lt-risk-medium   { background: #fffbeb; color: #92400e; border: 1px solid #fcd34d; }
+.lt-risk-low      { background: #f0fdf4; color: #15803d; border: 1px solid #86efac; }
+
+/* ─── Hero gradient for pages ─── */
+.lt-hero-bg {
+    background: linear-gradient(135deg, var(--lt-navy) 0%, var(--lt-navy-mid) 45%, #1a2d6d 100%);
+}
+
+/* ─── Glass effect ─── */
+.lt-glass {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.14);
+}
+
+/* ─── Noise texture overlay for hero ─── */
+.lt-hero-noise::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    background-size: 256px;
+    opacity: 0.5;
+    pointer-events: none;
+    border-radius: inherit;
+}
+
+/* ─── Responsive tweaks ─── */
+@media (max-width: 640px) {
+    .lt-btn-primary, .lt-btn-gold, .lt-btn-outline {
+        padding: 9px 16px;
+        font-size: 0.8rem;
+    }
+}
